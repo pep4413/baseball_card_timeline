@@ -1,5 +1,6 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Hahmlet:wght@400;700&display=swap');
 
 body {
   margin: 0;
@@ -12,17 +13,66 @@ body {
 .header {
   background-color: #7C4B2C;
   height: 50px;
-  padding: 1em 0;
+  padding: 2em 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .header h1 {
   color: #F7F8F8;
-  text-align: center;
-  margin: 0;
-  font-size: 2.5em;
+  font-size: 4em;
   font-weight: 400;
   font-family: 'Abril Fatface', sans-serif;
   letter-spacing: .1rem;
+  word-spacing: .5rem;
   text-shadow: 1px 1px 10px rgba(0,0,0,.7);
+}
 
+.mainBody {
+  margin: auto;
+  margin-top: 200px;
+  margin-bottom: 200px;
+  max-width: 960px;
+}
+
+.yearDiv, .setDiv {
+  background-color: #E19443;
+  border-left: 5px solid #74ABAE;
+  border-top: 1px solid #74ABAE;
+  border-bottom: 1px solid #74ABAE;
+}
+
+.yearDiv h1 {
+  color: #F7F8F8;
+  font-family: 'Hahmlet', serif;
+  text-align: center;
+  font-size: 3em;
+  font-weight: 700;
+  text-shadow: 1px 1px 10px rgba(0,0,0,.7);
+}
+
+.setDiv {
+  background-color: #F7F8F8;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px 50px;
+  font-family: 'Hahmlet', serif;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.setDiv img {
+  max-width: 150px;
+  margin-left: auto;
+  margin-right: 50px;
+  border: 2px solid #7C4B2C;
+}
+
+.setDiv h1 {
+  margin-left: 50px;
 }

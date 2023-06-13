@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
+import Year from './Year'
 
 
 const Main = () => {
     const [sets, setSets] = useState(null)
-
 
     useEffect(() => {
       const fetchSets = async () => {
@@ -15,21 +15,12 @@ const Main = () => {
       }
   
       fetchSets()
+           
     }, [])
-
-
+       
     return ( 
-        <div>
-            {sets && sets.map((set) => (
-                <div>
-                    <img src={set.imageSrc}></img>
-                    <h1>{set.year} {set.name}</h1>
-                    <p>Manufacturer: {set.manufacturer}</p>
-                    <p>Cards in set: {set.setCount}</p>
-                    <p>{set.content}</p>
-                </div>                
-            ))}
-            {/* Set Details Modal */}
+        <div className='mainBody'>
+            <Year sets={sets}/>
         </div>      
      );
 }
