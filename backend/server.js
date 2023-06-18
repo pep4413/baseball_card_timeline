@@ -26,4 +26,3 @@ app.get("/api", async (req, res) => {
         .catch((err) => console.log(err))
     res.json(results)
 })
-

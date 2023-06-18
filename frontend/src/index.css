@@ -4,6 +4,11 @@
 
 body {
   margin: 0;
+  background-color: black;
+}
+
+p, h1, h2, h3 {
+  font-family: sans-serif;
 }
 
 .App {
@@ -23,7 +28,7 @@ body {
 }
 
 .header h1 {
-  color: #F7F8F8;
+  color: #E3CE97;
   font-size: 4em;
   font-weight: 400;
   font-family: 'Abril Fatface', sans-serif;
@@ -34,16 +39,21 @@ body {
 
 .mainBody {
   margin: auto;
-  margin-top: 200px;
-  margin-bottom: 200px;
+  margin-top: 150px;
+  margin-bottom: 150px;
   max-width: 960px;
+  box-shadow: 0px 1px 10px rgba(0,0,0,.7);
 }
 
 .yearDiv, .setDiv {
   background-color: #E19443;
-  border-left: 5px solid #74ABAE;
   border-top: 1px solid #74ABAE;
   border-bottom: 1px solid #74ABAE;
+  margin: 0;
+}
+
+.yearDiv {
+  border-left: 1px solid #74ABAE;
 }
 
 .yearDiv h1 {
@@ -56,23 +66,100 @@ body {
 }
 
 .setDiv {
-  background-color: #F7F8F8;
+  background-color: #E3CE97;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 20px 50px;
-  font-family: 'Hahmlet', serif;
-  font-size: 1em;
-  font-weight: 700;
+  border-left: 10px solid #7C4B2C;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px rgba(0,0,0,.7);
+}
+
+.setDiv:hover {
+  border-left: 10px solid #74ABAE;
+  background-color: #ffffff;
 }
 
 .setDiv img {
-  max-width: 150px;
+  max-width: 21%;
   margin-left: auto;
   margin-right: 50px;
   border: 2px solid #7C4B2C;
+  box-shadow: 1px 1px 10px rgba(0,0,0,.7);
 }
 
 .setDiv h1 {
   margin-left: 50px;
+  font-family: 'Hahmlet', serif;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.setModal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  max-width: 960px;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #F7F8F8;
+  top: 0;
+  border: 2px solid black;
+}
+
+.modalContent {
+  white-space: pre-wrap;
+  margin: 5% 20%;
+}
+
+.modalHeader {
+  margin-bottom: 25px;
+  background-color: #7C4B2C;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid #E19443;
+}
+
+.modalHeader h1 {
+  font-family: 'Abril Fatface', sans-serif;
+  color: #F7F8F8;
+  font-size: 3em;
+  letter-spacing: .07em;
+  text-shadow: 1px 1px 10px rgba(0,0,0,.7);
+}
+
+.modalImg {
+  max-height: 50%; 
+  max-width: 50%;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 1px 1px 10px rgba(0,0,0,.7);
+}
+
+.footer {
+  display: flex;
+  position: fixed;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #7C4B2C;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer p, .footer a {
+  color: #E3CE97;
+  font-size: 1.1em;
+  font-weight: 400;
+  font-family: 'Abril Fatface', sans-serif;
+  text-decoration: none;
+  text-shadow: 1px 1px 10px rgba(0,0,0,.7);
+  letter-spacing: .07em;
+}
+
+.footer a:hover {
+  color:#74ABAE;
 }
