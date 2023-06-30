@@ -17,6 +17,8 @@ const Main = () => {
       fetchSets()
            
     }, [])
+
+    
        
     return ( 
         <div className='mainBody'>

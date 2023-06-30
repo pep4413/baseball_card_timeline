@@ -18,19 +18,21 @@ const SetModal = (props) => {
     }
     
 
-    return ( 
+    return (    
         <div className="setModal" id="setModal" >
-                    <div className="modalHeader">
-                        <h1>{props.uniqueSet.year} {props.uniqueSet.name}</h1>
-                    </div>
-                    <img src={props.uniqueSet.imageSrc} alt="" className="modalImg" />
-                    <div className="modalContent">
-                        <p><strong>Manufacturer: </strong>{props.uniqueSet.manufacturer}</p>
-                        <p><strong>Total cards in set: </strong>{props.uniqueSet.setCount}</p>
-                        <p>{props.uniqueSet.content}</p>   
-                        {hofRC()} 
-                    </div>                    
-                </div> 
+            <span id="close" onClick={props.closeClick}>&times;</span>
+            <div className="modalHeader">
+                <h1>{props.uniqueSet.year} {props.uniqueSet.name}</h1>
+                
+            </div>
+            <img src={props.uniqueSet.imageSrc} alt="" className="modalImg" />
+            <div className="modalContent">
+                <p><strong>Manufacturer: </strong>{props.uniqueSet.manufacturer}</p>
+                <p><strong>Total cards in set: </strong>{props.uniqueSet.setCount}</p>
+                <p>{props.uniqueSet.content}</p>   
+                {hofRC()} 
+            </div>                    
+        </div>       
      );
 }
  

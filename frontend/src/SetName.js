@@ -5,7 +5,8 @@ const Set = (props) => {
 
     const [ uniqueSet, setUniqueSet] = useState(null)
     const [ showModal, setShowModal ] = useState(false)
-    let app = document.getElementById('app')
+    const shadow = document.getElementById('shadow')
+
     
     const setClick = (e) => {
         const uniqueId = e.currentTarget.getAttribute("id")
@@ -13,20 +14,30 @@ const Set = (props) => {
         setUniqueSet(x)
         setShowModal(true)
         document.body.style.overflowY = "hidden"
+        shadow.style.visibility = "visible"
     }
 
     const showMe = () => {
         if (uniqueSet && showModal) {
             return (
-                <SetModal uniqueSet={uniqueSet} />
+                <SetModal uniqueSet={uniqueSet} closeClick={closeClick}/>
             )     
         }
     }
 
-    window.onclick = (e) => {
-        if (e.target === app && showModal) {
+    window.addEventListener('click', (e) => {
+        if (e.target === shadow && showModal) {
             setShowModal(false)
             document.body.style.overflowY = "auto"
+            shadow.style.visibility = "hidden"
+        }
+    })
+
+    const closeClick = (e) => {
+        if (e.target === document.getElementById('close')) {
+            setShowModal(false)
+            document.body.style.overflowY = "auto"
+            shadow.style.visibility = "hidden"
         }
     }
 

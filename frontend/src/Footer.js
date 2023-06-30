@@ -1,8 +1,18 @@
-const Footer = () => {
+const Footer = (props) => {
+
+        
     return ( 
         <div className="footer">
-            <p>@Perkins 2023</p>
-            <p><a href="/">Contact</a></p>
+            <div className="innerFooter">
+                <p>@Perkins 2023</p>
+                <div id="contact" onClick={() => {
+                    if (props.showForm === true) {
+                        props.setShow(false)
+                    } else {
+                        props.setShow(true)
+                    }
+                    }}><p>Contact</p></div>
+            </div>
         </div>
      );
 }

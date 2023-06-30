@@ -13,8 +13,11 @@ p, h1, h2, h3 {
 
 .App {
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
+/* Header Bar */
 .header {
   background-color: #7C4B2C;
   height: 50px;
@@ -29,31 +32,37 @@ p, h1, h2, h3 {
 
 .header h1 {
   color: #E3CE97;
-  font-size: 4em;
+  font-size: 3.75em;
   font-weight: 400;
+  text-align: center;
   font-family: 'Abril Fatface', sans-serif;
   letter-spacing: .1rem;
   word-spacing: .5rem;
   text-shadow: 1px 1px 10px rgba(0,0,0,.7);
 }
 
+/* Main Container  */
 .mainBody {
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 150px;
   margin-bottom: 150px;
   max-width: 960px;
   box-shadow: 0px 1px 10px rgba(0,0,0,.7);
 }
 
+/* year/set divs */
 .yearDiv, .setDiv {
   background-color: #E19443;
   border-top: 1px solid #74ABAE;
   border-bottom: 1px solid #74ABAE;
   margin: 0;
+  width: 100%;
 }
 
 .yearDiv {
   border-left: 1px solid #74ABAE;
+  max-width: 100%;
 }
 
 .yearDiv h1 {
@@ -66,14 +75,18 @@ p, h1, h2, h3 {
 }
 
 .setDiv {
+  max-width: 100%;
+  box-sizing: border-box;
   background-color: #E3CE97;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 20px 50px;
   border-left: 10px solid #7C4B2C;
   cursor: pointer;
   text-shadow: 1px 1px 2px rgba(0,0,0,.7);
+  padding-top: 10px;
+  padding-bottom: 10px;
+
 }
 
 .setDiv:hover {
@@ -82,7 +95,7 @@ p, h1, h2, h3 {
 }
 
 .setDiv img {
-  max-width: 21%;
+  max-width: 20%;
   margin-left: auto;
   margin-right: 50px;
   border: 2px solid #7C4B2C;
@@ -96,17 +109,31 @@ p, h1, h2, h3 {
   font-weight: 700;
 }
 
-.setModal {
+/* set Modal */
+.shadow {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  visibility: hidden;
+  display: block;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+
+.setModal, .contactModal {
   display: block;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   max-width: 960px;
-  height: 100%;
+  height: 90%;
   overflow-y: auto;
   background-color: #F7F8F8;
-  top: 0;
+  top: 30px;
   border: 2px solid black;
+  box-shadow: 2px 2px 20px #E3CE97;
 }
 
 .modalContent {
@@ -114,7 +141,23 @@ p, h1, h2, h3 {
   margin: 5% 20%;
 }
 
-.modalHeader {
+#close, #closeForm {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  z-index: 24;
+  position: absolute;
+  right: 0;
+  background-color: rgb(207, 91, 91);
+  cursor: pointer;
+}
+
+#close:hover, #closeForm:hover {
+  color: red;
+  background-color: white;
+}
+
+.modalHeader, .formHeader {
   margin-bottom: 25px;
   background-color: #7C4B2C;
   min-height: 100px;
@@ -124,12 +167,13 @@ p, h1, h2, h3 {
   border-bottom: 2px solid #E19443;
 }
 
-.modalHeader h1 {
+.modalHeader h1, .formHeader h1 {
   font-family: 'Abril Fatface', sans-serif;
   color: #F7F8F8;
   font-size: 3em;
   letter-spacing: .07em;
   text-shadow: 1px 1px 10px rgba(0,0,0,.7);
+  font-weight: 200;
 }
 
 .modalImg {
@@ -140,17 +184,59 @@ p, h1, h2, h3 {
   box-shadow: 1px 1px 10px rgba(0,0,0,.7);
 }
 
-.footer {
+/* Form */
+#contactForm {
   display: flex;
-  position: fixed;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
+  margin: 10% auto;
+  width: 60%;
+}
+
+#contactForm div {
+  display: block;
+  width: 100%;
+  padding: 15px;
+}
+
+#contactForm label {
+  display: block;
+  width: 100%;
+  font-size: 2em;
+}
+
+#contactForm button {
+  padding: 5px;
+  font-size: 1.5em;
+  background-color: #E19443;
+}
+
+#contactForm input {
+  min-height: 25px;
+}
+
+#contactForm input, textarea {
+  padding: 8px;
+  max-width: 90%;
+}
+
+/* Footer */
+.footer {
+  position: fixed;
   background-color: #7C4B2C;
   bottom: 0;
   width: 100%;
 }
 
-.footer p, .footer a {
+.innerFooter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.footer p {
   color: #E3CE97;
   font-size: 1.1em;
   font-weight: 400;
@@ -160,6 +246,91 @@ p, h1, h2, h3 {
   letter-spacing: .07em;
 }
 
-.footer a:hover {
+#contact p {
+  cursor: pointer;
+}
+
+#contact p:hover {
   color:#74ABAE;
+}
+
+/* dbAdmin */
+.admin {
+  background-color: #E3CE97;
+}
+
+.admin label, .admin input {
+  display: block;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1080px) {
+  .header h1 {
+    font-size: 2.75em;
+  }
+
+  .mainBody {
+    width: 80%;
+  }
+
+  .setModal, .contactModal {
+    width: 80%;
+  }
+
+  .modalHeader h1, .contactModal h1 {
+    text-align: center;
+    font-size: 2em;
+  }
+
+  #contactForm textarea {
+    width: 90%;
+  }
+
+  .innerFooter {
+    flex-wrap: wrap;
+  }
+  
+}
+
+@media screen and (max-width: 600px) {
+
+  .header h1 {
+    font-size: 1.75em;
+  }
+
+  .yearDiv h1 {
+    font-size: 1.75em;
+  }
+
+  .setDiv {
+    flex-direction: column-reverse;
+  }
+
+  .setDiv img {
+    margin: 0 auto;
+  }
+
+  .setDiv h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 1.75em;
+  }
+
+  #close, #closeForm {
+    font-size: 32px;
+  }
+
+  .innerFooter p, div {
+    margin: 0
+  }
+
+  .innerFooter p {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modalContent {
+    margin: 5%;
+  }
 }
