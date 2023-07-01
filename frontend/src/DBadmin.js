@@ -50,22 +50,69 @@ const DBadmin = () => {
             .then(console.log("Set added"))
             .catch((err) => console.log(err))
         const result = await response.json()
-        console.log(result)
-        thisForm.reset()
+        if (result) {
+            console.log(result)
+            thisForm.reset()
+        }        
     }
 
     const handleUpdate = async (e) => {
         e.preventDefault()
+        let thisForm = document.getElementById('addForm')
+        const { setId, setYear, setName, manu, setCount, image, hofRc, content } = e.target.elements
+        let thisId = setId.value
+        let rcs = []
+        rcs = hofRc.value.split(",").map(item => {return item.trim()})
+        if (rcs[0] === "") {
+            rcs = []
+        }
+        let details = {
+            id: setId.value,
+            year: Number(setYear.value),
+            name: setName.value,
+            manufacturer: manu.value,
+            setCount: Number(setCount.value),
+            rcOfNote: rcs,
+            imageSrc: image.value,
+            content: content.value
+        }
+        if (rcs.length === 0 ) {
+            delete details.rcOfNote
+        }
+        for (let key in details) {
+            if (details[key] === "" || details[key] === 0) {
+                delete details[key]
+            }
+        }
+        let Jdeets = JSON.stringify(details)
+        let response = await fetch("/dba/"+ thisId, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: Jdeets
+        })
+            .then(console.log("Set updated"))
+            .catch((err) => console.log(err))
+        const result = await response.json()
+        if (result) {
+            console.log(result)
+            thisForm.reset()
+        }
     }
 
     const handleDelete = async (e) => {
         e.preventDefault()
+        let thisForm = document.getElementById('deleteForm')
         let id = e.target.setId.value
         let response = await fetch("/dba/"+ id, {
             method: "DELETE"
         })
+        const result = await response.json()
         console.log(response.statusText)
-        
+        if (result) {
+            console.log(result)
+            thisForm.reset()
+            setToggleDiv(false)
+        }
     }
 
     const handleFind = async (e) => {
@@ -119,46 +166,43 @@ const DBadmin = () => {
 
     const deleteForm = () => {
         return (
-            <form onSubmit={handleDelete}>
+            <form onSubmit={handleDelete} id="deleteForm">
                 <label htmlFor="setId">Set Id #: </label>
                 <input type="text" id="setId" required/>
 
-                <button type="submit">Submit</button>
+                <button type="submit">Delete</button>
             </form>
         )
     }
 
     const updateForm = () => {
         return (
-            <form onSubmit={handleUpdate}>
+            <form onSubmit={handleUpdate} id="updateForm">
                 <label htmlFor="setId">Set Id #: </label>
                 <input type="text" id="setId" required/>
 
                 <label htmlFor="setYear">Set Year: </label>
-                <input type="text" id="setYear" required/>
+                <input type="text" id="setYear" />
 
                 <label htmlFor="setName">Set Name: </label>
-                <input type="text" id="setName" required />
+                <input type="text" id="setName"  />
 
                 <label htmlFor="manu">Manufacturer: </label>
-                <input type="text" id="manu" required />
+                <input type="text" id="manu" />
 
                 <label htmlFor="setCount">Set Count: </label>
-                <input type="number" id="setCount" required />
+                <input type="number" id="setCount" />
 
                 <label htmlFor="image">Image Source: </label>
-                <input type="text" id="image" required />
+                <input type="text" id="image" />
 
                 <label htmlFor="hofRc">HOF Rookies: </label>
-                <input type="test" id="hofRc" value={[]} placeholder="Leave Blank if None"/>
+                <input type="test" id="hofRc" placeholder="Leave Blank if None"/>
 
                 <label htmlFor="content">Content: </label>
-                <textarea id="content" cols="30" rows="10" required></textarea>
+                <textarea id="content" cols="30" rows="10"></textarea>
 
-                <label htmlFor="auth">Auth Key: </label>
-                <input type="password" id="auth" required />
-
-                <button type="submit">Submit</button>
+                <button type="submit">Update</button>
 
             </form>
         )
@@ -179,16 +223,20 @@ const DBadmin = () => {
 
     return ( 
         <div className="admin">
-            <div>
+            <div id="dbButtonDiv">
                 <button onClick={typeClick} id='addSet'>Add Set</button>
                 <button onClick={typeClick} id="findSet">Find Set ID</button>
                 <button onClick={typeClick} id="updateSet">Update Set</button>
                 <button onClick={typeClick} id="deleteSet">Delete Set</button>
             </div>
-            {renderDiv()}
+            <div id="formDiv">
+                {renderDiv()}
+            </div>
             { toggleDiv && setFilter.map(set => {
                 return (
-                    <p key={set._id}>{set.year} {set.name} - ID: {set._id}</p>
+                    <div id="infoDiv">
+                        <p key={set._id}>{set.year} {set.name} - ID: {set._id}</p>
+                    </div>
                     )
                 })
             }

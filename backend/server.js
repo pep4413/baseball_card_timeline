@@ -27,7 +27,7 @@ dbConnect()
 app.get("/api", async (req, res) => {
     const db = client.db("timeline")
     const sets = db.collection('sets')
-    const results = await sets.find({}).toArray()
+    const results = await sets.find({}).sort({ "year": 1 }).toArray()
         .then(console.log('results fetched'))
         .catch((err) => console.log(err))
     res.json(results)
@@ -93,14 +93,22 @@ app.post("/dbadmin", async (req, res) => {
 })
 
 // Update
-
+app.put("/dba/:id", async (req, res) => {
+    const id = req.body.id
+    const db = client.db("timeline")
+    const sets = db.collection('sets')
+    const updater = {...req.body}
+    let result = await sets.updateOne({ "_id": new ObjectId(id) }, { $set: {...updater}})
+        .catch(err => console.log(err))
+    res.json({ "status": "updated"})
+})
 
 // Delete
 app.delete("/dba/:id", async (req, res) => {
     const id = req.params.id
-    console.log(typeof(id))
     const db = client.db("timeline")
     const sets = db.collection('sets')
     const results = await sets.deleteOne( { "_id": new ObjectId(id) } )
-        .catch((err) => console.logi(err))
+        .catch((err) => console.log(err))
+    res.json({ "status": "Document Deleted" })
 })

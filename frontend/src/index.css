@@ -257,10 +257,55 @@ p, h1, h2, h3 {
 /* dbAdmin */
 .admin {
   background-color: #E3CE97;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#dbButtonDiv {
+  margin: 20px auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  max-height: 50px;
+}
+
+#dbButtonDiv button {
+  margin: 15px;
+  height: 30px;
+  max-height: 30px;
+  width: 100px;
+  max-width: 100px;
+}
+
+#formDiv {
+  margin: 20px auto;
+  width: 100%;
+  display: flex;
+}
+
+#formDiv button {
+  font-size: 2em;
+  margin-top: 10px
+}
+
+#formDiv form {
+  margin: 0 auto;
+  margin-bottom: 0;
 }
 
 .admin label, .admin input {
   display: block;
+}
+
+#formDiv textarea {
+  display: block;
+}
+
+#infoDiv {
+  background-color: #E3CE97
 }
 
 /* Media Queries */
