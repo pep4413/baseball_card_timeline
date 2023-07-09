@@ -13,7 +13,6 @@ const Login = (props) => {
             password: pwd
         }
         let jdeets = JSON.stringify(details)
-        console.log(jdeets);
         let logged = await fetch("https://baseball-timeline-backend.onrender.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -24,6 +23,7 @@ const Login = (props) => {
         if (result.success) {
             props.setAuth(true)
             setErrMsg(null)
+            console.log(result.message)
         } else {
             setErrMsg(result.message)
         }
