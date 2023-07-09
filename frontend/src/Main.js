@@ -7,7 +7,7 @@ const Main = () => {
 
     useEffect(() => {
       const fetchSets = async () => {
-        const response = await fetch('/api')
+        const response = await fetch('https://baseball-timeline-backend.onrender.com/api')
           const json = await response.json()
           if (response.ok) {
             setSets(json)
