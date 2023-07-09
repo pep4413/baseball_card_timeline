@@ -14,7 +14,7 @@ const Login = (props) => {
         }
         let jdeets = JSON.stringify(details)
         console.log(jdeets);
-        let logged = await fetch("/login", {
+        let logged = await fetch("https://baseball-timeline-backend.onrender.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: jdeets

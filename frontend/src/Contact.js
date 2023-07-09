@@ -19,7 +19,7 @@ const ContactModal = (props) => {
             message: message.value
         }
         let ndeets = JSON.stringify(details)
-        let response = await fetch("/contact", {
+        let response = await fetch("https://baseball-timeline-backend.onrender.com/contact", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

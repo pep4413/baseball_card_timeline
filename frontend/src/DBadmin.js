@@ -11,7 +11,7 @@ const DBadmin = () => {
     const [ isAuthenticated, setIsAuthenticated] = useState(false)
 
     const fetchSets = async () => {
-        const response = await fetch('/api')
+        const response = await fetch('https://baseball-timeline-backend.onrender.com/api')
           const json = await response.json()
           if (response.ok) {
             setSets(json)
@@ -45,7 +45,7 @@ const DBadmin = () => {
             content: content.value
         }
         let Jdeets = JSON.stringify(details)
-        let response = await fetch("/dbadmin", {
+        let response = await fetch("https://baseball-timeline-backend.onrender.com/dbadmin", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: Jdeets
@@ -95,7 +95,7 @@ const DBadmin = () => {
             }
         }
         let Jdeets = JSON.stringify(details)
-        let response = await fetch("/dba/"+ thisId, {
+        let response = await fetch("https://baseball-timeline-backend.onrender.com/dba/"+ thisId, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: Jdeets
@@ -120,7 +120,7 @@ const DBadmin = () => {
         e.preventDefault()
         let thisForm = document.getElementById('deleteForm')
         let id = e.target.setId.value
-        let response = await fetch("/dba/"+ id, {
+        let response = await fetch("https://baseball-timeline-backend.onrender.com/dba/"+ id, {
             method: "DELETE"
         })
         const result = await response.json()
