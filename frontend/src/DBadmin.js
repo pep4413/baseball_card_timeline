@@ -99,6 +99,7 @@ const DBadmin = () => {
         let response = await fetch("https://baseball-timeline-backend.onrender.com/dba/"+ thisId, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
+            credentials: 'include',
             body: Jdeets
         })
             .then(console.log("Set updated"))
@@ -122,7 +123,8 @@ const DBadmin = () => {
         let thisForm = document.getElementById('deleteForm')
         let id = e.target.setId.value
         let response = await fetch("https://baseball-timeline-backend.onrender.com/dba/"+ id, {
-            method: "DELETE"
+            method: "DELETE",
+            credentials: 'include'
         })
         const result = await response.json()
         console.log(response.statusText)
