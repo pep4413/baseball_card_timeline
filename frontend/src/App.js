@@ -11,35 +11,30 @@ function App() {
 
   const [ showForm, SetShowForm ] = useState(false)
   const shadow = document.getElementById('shadow')
-  console.log(shadow)
 
   const showContact = () => {
     if (showForm) {
       shadow.style.visibility = "visible";
       document.body.style.overflowY = "hidden"
       return (
-        <ContactModal close={closeClick} setShow={SetShowForm}/>
+          <ContactModal close={closeClick} setShow={SetShowForm}  />
       )    
     }
   }
 
   window.addEventListener("click", (e) => {
     if ((e.target === shadow) && showForm) {
-      console.log(e.target)
       SetShowForm(false)
       document.body.style.overflowY = "auto"
       shadow.style.visibility = "hidden";
-
     }
   })
 
   const closeClick = (e) => {
     if (e.target === document.getElementById('closeForm')) {
-      console.log(e.target)
       SetShowForm(false)
       document.body.style.overflowY = "auto"
       shadow.style.visibility = "hidden";
-
     }
 }
 
@@ -48,16 +43,15 @@ function App() {
       <Routes>
         <Route path="/" element={
           <div className="App" id="app">
-          <Header />
-          <Shadow />
-          <Main />
-          <Footer setShow={SetShowForm} showForm={showForm} close={closeClick} />
-          {showContact()}
-        </div>
+            <Header />
+            <Shadow />
+            <Main />
+            <Footer setShow={SetShowForm} showForm={showForm} close={closeClick}  />
+            {showContact()}
+          </div>
         }>
         </Route>
-        <Route path="/dbadmin" element={<DBadmin />}>
-        </Route>
+        <Route path="/dbadmin" element={<DBadmin />}></Route>
       </Routes>
     </BrowserRouter>
   );

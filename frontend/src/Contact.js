@@ -1,7 +1,13 @@
 import { useState } from "react";
+import { useSpring, animated } from '@react-spring/web'
 
 const ContactModal = (props) => {
     const [status, SetStatus] = useState("Send Message")
+    const springs = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 }
+    })
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -29,7 +35,7 @@ const ContactModal = (props) => {
         
 
     return ( 
-        <div className="contactModal">
+        <animated.div className="contactModal" style={{...springs}}>
             <span id="closeForm" onClick={props.close}>&times;</span>
             <div className="formHeader">
                 <h1>Contact Us</h1>
@@ -51,7 +57,7 @@ const ContactModal = (props) => {
                     <button type="submit">{status}</button>
                 </div>
             </form>
-        </div>
+        </animated.div>
      );
 }
  

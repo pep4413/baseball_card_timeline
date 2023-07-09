@@ -1,4 +1,12 @@
+import { useSpring, animated } from '@react-spring/web'
+
+
 const SetModal = (props) => {
+    const springs = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 }
+    })
+
 
     const hofRC = () => {
         if (props.uniqueSet.rcOfNote.length === 0) {
@@ -19,7 +27,7 @@ const SetModal = (props) => {
     
 
     return (    
-        <div className="setModal" id="setModal" >
+        <animated.div className="setModal" id="setModal" style={{...springs}}>
             <span id="close" onClick={props.closeClick}>&times;</span>
             <div className="modalHeader">
                 <h1>{props.uniqueSet.year} {props.uniqueSet.name}</h1>
@@ -32,7 +40,7 @@ const SetModal = (props) => {
                 <p>{props.uniqueSet.content}</p>   
                 {hofRC()} 
             </div>                    
-        </div>       
+        </animated.div>       
      );
 }
  

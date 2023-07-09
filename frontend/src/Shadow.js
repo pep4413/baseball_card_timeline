@@ -1,6 +1,13 @@
+import { useSpring, animated } from '@react-spring/web'
+
 const Shadow = () => {
+    const springs = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 }
+    })
+
     return ( 
-        <div className="shadow" id="shadow"></div>
+        <animated.div className="shadow" id="shadow" style={{...springs}}></animated.div>
      );
 }
  

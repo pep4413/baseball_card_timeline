@@ -1,22 +1,25 @@
 import { useState, useEffect } from "react";
+import Login from "./Login";
 
 const DBadmin = () => {
     const [ task, setTask ] = useState(null)
     const [ sets, setSets ] = useState(null)
     const [ setFilter, setSetFilter ] = useState([])
     const [ toggleDiv, setToggleDiv ] = useState(false)
+    const [ errorDiv, setErrorDiv ] = useState(false)
+    const [ errorMsg, setErrorMsg] = useState(null)
+    const [ isAuthenticated, setIsAuthenticated] = useState(false)
 
-    useEffect(() => {
-      const fetchSets = async () => {
+    const fetchSets = async () => {
         const response = await fetch('/api')
           const json = await response.json()
           if (response.ok) {
             setSets(json)
           }
       }
-  
+
+    useEffect(() => {
       fetchSets()
-           
     }, [])
 
     const typeClick = (e) => {
@@ -50,15 +53,22 @@ const DBadmin = () => {
             .then(console.log("Set added"))
             .catch((err) => console.log(err))
         const result = await response.json()
-        if (result) {
+        if (result.success) {
             console.log(result)
             thisForm.reset()
+            setErrorDiv(false)
+            setErrorMsg(null)
+            fetchSets()
+        } else {
+            console.log(result)
+            setErrorDiv(true)
+            setErrorMsg(result.message)
         }        
     }
 
     const handleUpdate = async (e) => {
         e.preventDefault()
-        let thisForm = document.getElementById('addForm')
+        let thisForm = document.getElementById('updateForm')
         const { setId, setYear, setName, manu, setCount, image, hofRc, content } = e.target.elements
         let thisId = setId.value
         let rcs = []
@@ -93,9 +103,16 @@ const DBadmin = () => {
             .then(console.log("Set updated"))
             .catch((err) => console.log(err))
         const result = await response.json()
-        if (result) {
+        if (result.success) {
             console.log(result)
             thisForm.reset()
+            setErrorDiv(false)
+            setErrorMsg(null)
+            fetchSets()
+        } else {
+            console.log(result)
+            setErrorDiv(true)
+            setErrorMsg(result.message)
         }
     }
 
@@ -111,7 +128,14 @@ const DBadmin = () => {
         if (result) {
             console.log(result)
             thisForm.reset()
+            setErrorDiv(false)
+            setErrorMsg(null)
             setToggleDiv(false)
+            fetchSets()
+        } else {
+            console.log(result)
+            setErrorDiv(true)
+            setErrorMsg(result.message)
         }
     }
 
@@ -121,6 +145,7 @@ const DBadmin = () => {
         let filtered = sets.filter(set => set.year === year)
         setSetFilter(filtered)
         setToggleDiv(true)
+        console.log(toggleDiv)
     }
 
     const addForm = (e) => {
@@ -221,27 +246,36 @@ const DBadmin = () => {
         }
     }
 
-    return ( 
-        <div className="admin">
-            <div id="dbButtonDiv">
-                <button onClick={typeClick} id='addSet'>Add Set</button>
-                <button onClick={typeClick} id="findSet">Find Set ID</button>
-                <button onClick={typeClick} id="updateSet">Update Set</button>
-                <button onClick={typeClick} id="deleteSet">Delete Set</button>
-            </div>
-            <div id="formDiv">
-                {renderDiv()}
-            </div>
-            { toggleDiv && setFilter.map(set => {
-                return (
-                    <div id="infoDiv">
-                        <p key={set._id}>{set.year} {set.name} - ID: {set._id}</p>
+    if (!isAuthenticated) {
+        return (<Login setAuth={setIsAuthenticated}/>)
+    } else {
+        return ( 
+            <div className="admin">
+                <div id="dbButtonDiv">
+                    <button onClick={typeClick} id='addSet'>Add Set</button>
+                    <button onClick={typeClick} id="findSet">Find Set ID</button>
+                    <button onClick={typeClick} id="updateSet">Update Set</button>
+                    <button onClick={typeClick} id="deleteSet">Delete Set</button>
+                </div>
+                <div id="formDiv">
+                    {renderDiv()}
+                </div>
+                { toggleDiv && setFilter.map(set => {
+                    return (
+                        <div id="infoDiv" key={set._id}>
+                            <p key={set._id}>{set.year} {set.name} - ID: {set._id}</p>
+                        </div>
+                        )
+                    })
+                }
+                { errorDiv && (
+                    <div id="errorDiv">
+                        <p>{errorMsg}</p>
                     </div>
-                    )
-                })
-            }
-        </div>
-     );
+                )}
+            </div>
+        );
+    }
 }
  
 export default DBadmin;
