@@ -13,7 +13,8 @@ const app = express()
 app.use(cors(
     {
         origin: ['https://baseball-timeline-frontend.onrender.com'],
-        credentials: true
+        credentials: true,
+        allowedHeaders: ['Access-Control-Allow-Origin', 'Access-Control-Allow-Headers']
     }
 ))
 
