@@ -48,6 +48,7 @@ const DBadmin = () => {
         let response = await fetch("https://baseball-timeline-backend.onrender.com/dbadmin", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: 'include',
             body: Jdeets
         })
             .then(console.log("Set added"))
