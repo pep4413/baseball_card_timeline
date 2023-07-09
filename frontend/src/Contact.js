@@ -30,7 +30,8 @@ const ContactModal = (props) => {
         let result = await response.json()
         console.log(result.status)
         document.getElementById('contactForm').reset()
-    }
+        }
+    
 
         
 

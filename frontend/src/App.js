@@ -51,7 +51,7 @@ function App() {
           </div>
         }>
         </Route>
-        <Route path="/dbadmin" element={<DBadmin />}></Route>
+        <Route path="https://baseball-timeline-backend.onrender.com/dbadmin" element={<DBadmin />}></Route>
       </Routes>
     </BrowserRouter>
   );
