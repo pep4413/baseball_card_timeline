@@ -105,7 +105,8 @@ app.post("/login", async (req, res) => {
     if (username === process.env.dbadmin && pwd === process.env.dbadminpass) {
         let token = jwt.sign({user: username}, process.env.jkey, {expiresIn: "2h"})
         res.cookie("token", token, {
-            httpOnly: true
+            httpOnly: true,
+            secure: true
         }).json({
             success: true,
             message: "Authentication Successful",
