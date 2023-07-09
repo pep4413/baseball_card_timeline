@@ -16,6 +16,7 @@ const Login = (props) => {
         let logged = await fetch("https://baseball-timeline-backend.onrender.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: 'include',
             body: jdeets
         })
             .catch(err => console.log(err))
