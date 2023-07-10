@@ -148,7 +148,6 @@ const DBadmin = () => {
         let filtered = sets.filter(set => set.year === year)
         setSetFilter(filtered)
         setToggleDiv(true)
-        console.log(toggleDiv)
     }
 
     const addForm = (e) => {
