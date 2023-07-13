@@ -50,12 +50,14 @@ const ContactModal = (props) => {
                 body: ndeets
             })
             let result = await response.json()
+                .then(console.log("captcha received"))
                 .catch(err => {console.log(err)})
-            if (result.success) {
-                SetCap(true)
-            } else {
-                console.log(result)   
-            }            
+            console.log(result)
+            // if (result.success) {
+            //     SetCap(true)
+            // } else {
+            //     console.log(result)   
+            // }            
         }
         
 
