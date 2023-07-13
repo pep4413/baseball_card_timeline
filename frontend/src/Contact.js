@@ -39,11 +39,10 @@ const ContactModal = (props) => {
         const capChange = async (value) => {
             SetCapVal(value)
             let details = {
-                secret: process.env.REACT_APP_CAP,
                 response: capVal
             }
             let ndeets = JSON.stringify(details)
-            let response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+            let response = await fetch('/cap', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -51,7 +50,6 @@ const ContactModal = (props) => {
                 body: ndeets
             })
             let result = await response.json()
-            console.log(result)
             if (result.success) {
                 SetCap(true)
             } else {
