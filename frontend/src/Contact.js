@@ -42,6 +42,7 @@ const ContactModal = (props) => {
                 response: capVal
             }
             let ndeets = JSON.stringify(details)
+            console.log(ndeets)
             let response = await fetch('/cap', {
                 method: "POST",
                 headers: {
