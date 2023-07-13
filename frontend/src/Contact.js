@@ -50,10 +50,11 @@ const ContactModal = (props) => {
                 body: ndeets
             })
             let result = await response.json()
+                .catch(err => {console.log(err)})
             if (result.success) {
                 SetCap(true)
             } else {
-                console.log(result["error-codes"])   
+                console.log(result)   
             }            
         }
         
