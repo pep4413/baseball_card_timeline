@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSpring, animated } from '@react-spring/web'
+import ReCAPTCHA from "react-google-recaptcha"
 
 const ContactModal = (props) => {
     const [status, SetStatus] = useState("Send Message")
@@ -32,7 +33,9 @@ const ContactModal = (props) => {
         document.getElementById('contactForm').reset()
         }
     
-
+        const capChange = (value) => {
+            console.log("Captcha value:", value)
+        }
         
 
     return ( 
@@ -54,9 +57,12 @@ const ContactModal = (props) => {
                     <label htmlFor="message">Message:</label>
                     <textarea id="message" cols="70" rows="10" required></textarea>
                 </div>
-                <div class="g-recaptcha" data-sitekey="6Lf8ASAnAAAAAMQ1Tw7RBcy7tjkzgMI4t2t6qJsP">
-                    
-                </div>
+
+                <ReCAPTCHA 
+                    sitekey="6Lf8ASAnAAAAAMQ1Tw7RBcy7tjkzgMI4t2t6qJsP"
+                    onChange={capChange}
+                />
+
                 <div id="buttonDiv">
                     <button type="submit">{status}</button>
                 </div>
