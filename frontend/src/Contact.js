@@ -37,30 +37,31 @@ const ContactModal = (props) => {
         }
     
         const capChange = async (value) => {
-            SetCapVal(value)
-            if (SetCapVal) {
-                let details = {
-                    response: capVal
-                }
-                let ndeets = JSON.stringify(details)
-                console.log(ndeets)
-                let response = await fetch('/cap', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: ndeets
-                })
-                let result = await response.json()
-                    .then(console.log("captcha received"))
-                    .catch(err => {console.log(err)})
-                console.log(result)
-                // if (result.success) {
-                //     SetCap(true)
-                // } else {
-                //     console.log(result)   
-                // }     
-            }
+            SetCap(true)
+            // SetCapVal(value)
+            // if (SetCapVal) {
+            //     let details = {
+            //         response: capVal
+            //     }
+            //     let ndeets = JSON.stringify(details)
+            //     console.log(ndeets)
+            //     let response = await fetch('/cap', {
+            //         method: "POST",
+            //         headers: {
+            //             "Content-Type": "application/json"
+            //         },
+            //         body: ndeets
+            //     })
+            //     let result = await response.json()
+            //         .then(console.log("captcha received"))
+            //         .catch(err => {console.log(err)})
+            //     console.log(result)
+            //     // if (result.success) {
+            //     //     SetCap(true)
+            //     // } else {
+            //     //     console.log(result)   
+            //     // }     
+            // }
         }
         
 
