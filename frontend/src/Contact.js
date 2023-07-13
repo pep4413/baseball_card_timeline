@@ -4,6 +4,7 @@ import ReCAPTCHA from "react-google-recaptcha"
 
 const ContactModal = (props) => {
     const [status, SetStatus] = useState("Send Message")
+    const [cap, SetCap] = useState(false)
     const springs = useSpring({
         from: { opacity: 0 },
         to: { opacity: 1 }
@@ -34,7 +35,7 @@ const ContactModal = (props) => {
         }
     
         const capChange = (value) => {
-            console.log("Captcha value:", value)
+            SetCap(true)
         }
         
 
@@ -61,11 +62,14 @@ const ContactModal = (props) => {
                 <ReCAPTCHA 
                     sitekey="6Lf8ASAnAAAAAMQ1Tw7RBcy7tjkzgMI4t2t6qJsP"
                     onChange={capChange}
+                    size="compact"
                 />
 
+                {cap && 
                 <div id="buttonDiv">
                     <button type="submit">{status}</button>
                 </div>
+                }
             </form>
         </animated.div>
      );
