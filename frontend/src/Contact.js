@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSpring, animated } from '@react-spring/web'
 import ReCAPTCHA from "react-google-recaptcha"
-require('dotenv').config()
 
 const ContactModal = (props) => {
     const [status, SetStatus] = useState("Send Message")
@@ -40,7 +39,7 @@ const ContactModal = (props) => {
         const capChange = async (value) => {
             SetCapVal(value)
             let details = {
-                secret: process.env.CAP,
+                secret: process.env.REACT_APP_CAP,
                 response: capVal
             }
             let ndeets = JSON.stringify(details)
@@ -81,7 +80,7 @@ const ContactModal = (props) => {
                 </div>
 
                 <ReCAPTCHA 
-                    sitekey="6Lf8ASAnAAAAAMQ1Tw7RBcy7tjkzgMI4t2t6qJsP"
+                    sitekey="6LdZYyAnAAAAAGpTdkbxQmz1Ur2NE5qoaOPNBGLI"
                     onChange={capChange}
                     size="compact"
                 />
