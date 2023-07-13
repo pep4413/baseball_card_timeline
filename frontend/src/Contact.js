@@ -51,6 +51,7 @@ const ContactModal = (props) => {
                 body: ndeets
             })
             let result = await response.json()
+            console.log(result)
             if (result.success) {
                 SetCap(true)
             } else {
