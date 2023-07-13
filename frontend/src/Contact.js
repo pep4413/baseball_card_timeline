@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useSpring, animated } from '@react-spring/web'
 import ReCAPTCHA from "react-google-recaptcha"
+require('dotenv').config()
 
 const ContactModal = (props) => {
     const [status, SetStatus] = useState("Send Message")
     const [cap, SetCap] = useState(false)
+    const [capVal, SetCapVal] = useState(null)
     const springs = useSpring({
         from: { opacity: 0 },
         to: { opacity: 1 }
@@ -35,8 +37,26 @@ const ContactModal = (props) => {
         SetCap(false)
         }
     
-        const capChange = (value) => {
-            SetCap(true)
+        const capChange = async (value) => {
+            SetCapVal(value)
+            let details = {
+                secret: process.env.CAP,
+                response: capVal
+            }
+            let ndeets = JSON.stringify(details)
+            let response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: ndeets
+            })
+            let result = await response.json()
+            if (result.success) {
+                SetCap(true)
+            } else {
+                console.log(result["error-codes"])   
+            }            
         }
         
 
