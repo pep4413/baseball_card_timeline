@@ -54,6 +54,9 @@ const ContactModal = (props) => {
                     <label htmlFor="message">Message:</label>
                     <textarea id="message" cols="70" rows="10" required></textarea>
                 </div>
+                <div class="g-recaptcha" data-sitekey="6Lf8ASAnAAAAAMQ1Tw7RBcy7tjkzgMI4t2t6qJsP">
+                    
+                </div>
                 <div id="buttonDiv">
                     <button type="submit">{status}</button>
                 </div>
