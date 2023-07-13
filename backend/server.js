@@ -192,7 +192,8 @@ app.post('/cap', async (req, res, next) => {
         headers: { "Content-Type": "application/json" },
         body: jdeets
     })
-    let result = capRes.json()
+    let result = await capRes.json()
+    console.log(result)
     if (result.success) {
         res.json({ "success": true })
     } else {
