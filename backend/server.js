@@ -26,7 +26,7 @@ const client = new MongoClient(process.env.MONG_URI)
 const dbConnect = async () => {
     await client.connect()
     console.log('connected to mongo server')
-    app.listen(process.env.PORT, () => console.log(`Server started on ${process.env.PORT}`))
+    app.listen(process.env.PORT, () => console.log(`Server started`))
 }
 
 dbConnect()
@@ -180,24 +180,3 @@ app.delete("/dba/:id", async (req, res, next) => {
     }
 })
 
-// captcha verify
-// app.post('/cap', async (req, res, next) => {
-//     console.log("route pinged", req.body)
-//     let details = {
-//         secret: process.env.CAP,
-//         response: req.body.response
-//     }
-//     let jdeets = JSON.stringify(details)
-//     let capRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: jdeets
-//     })
-//     let result = await capRes.json()
-//     console.log(result)
-//     if (result.success) {
-//         res.json({ "success": true })
-//     } else {
-//         res.json( {"success": false, "message": "Something went wrong with captcha check"} )
-//     }
-// })
